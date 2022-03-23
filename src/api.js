@@ -10,5 +10,5 @@ const api = axios.create({
 
 export const movieApi = {
   nowPlaying: () => api.get("movie/now_playing"),
-  popular: () => api.get("movie/popular"),
+  //   popular: () => api.get("movie/popular"),
 };
