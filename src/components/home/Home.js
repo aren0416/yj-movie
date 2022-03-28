@@ -20,6 +20,9 @@ export const Home = () => {
 
   const [upComing, setUpComing] = useState();
 
+  const [loading, setLoading] = useState(true);
+  // => 참이면 로딩페이지를 돌리고, 거짓이면 컨텐츠가 나오도록 작성할 것임
+
   useEffect(() => {
     const movieData = async () => {
       //const nowPlayingData = await (await movieApi.nowPlaying()).data.results;
@@ -43,6 +46,8 @@ export const Home = () => {
         data: { results: upComingData },
       } = await movieApi.upComing();
       setUpComing(upComingData);
+
+      setLoading(false);
     };
     movieData();
   }, []);
@@ -62,7 +67,17 @@ export const Home = () => {
       {/* => api에서 받아오는 속도보다 읽히는게 빠르기때문에 오류가 생김
       => api에서 받아오는것이 먼저 읽히고 읽힐 수 있도록 해줘야함 */}
 
-      {nowPlaying ? <MainBanner data={nowPlaying[0]} /> : <Loading />}
+      {/* {nowPlaying ? <MainBanner data={nowPlaying[0]} /> : <Loading />} */}
+
+      {loading ? (
+        <Loading />
+      ) : (
+        nowPlaying && (
+          <>
+            <MainBanner data={nowPlaying[0]} />
+          </>
+        )
+      )}
     </>
   );
 };
