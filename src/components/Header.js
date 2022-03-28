@@ -11,6 +11,7 @@ const SHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 80px;
 `;
 
 const Logo = styled.div`
@@ -18,9 +19,14 @@ const Logo = styled.div`
   font-weight: 900;
 `;
 
-const MenuWrap = styled.ul``;
+const MenuWrap = styled.ul`
+  display: flex;
+`;
 
-const Menu = styled.li``;
+const Menu = styled.li`
+  margin-left: 80px;
+  font-weight: 600;
+`;
 
 export const Header = () => {
   return (
