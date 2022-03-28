@@ -52,12 +52,6 @@ export const Home = () => {
     <>
       <PageTitle title={"Home"} />
       <h1>Home</h1>
-      {/* {popular.map((play) => (
-        <div>{play.title}</div>
-      ))} */}
-      {upComing.map((play) => (
-        <div key={play.id}>{play.title}</div>
-      ))}
     </>
   );
 };
