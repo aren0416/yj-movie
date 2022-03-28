@@ -8,6 +8,7 @@ const SHeader = styled.header`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 99;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,6 +18,9 @@ const SHeader = styled.header`
 const Logo = styled.div`
   font-size: 26px;
   font-weight: 900;
+  a {
+    color: crimson;
+  }
 `;
 
 const MenuWrap = styled.ul`
