@@ -2,6 +2,7 @@ import { PageTitle } from "../PageTitle";
 import { movieApi } from "../../api";
 import { useEffect, useState } from "react";
 import { MainBanner } from "./MainBanner";
+import { Loading } from "../Loading";
 
 //console.log(movieApi.nowPlaying());
 // => api에서 불러온 내용 확인
@@ -61,7 +62,7 @@ export const Home = () => {
       {/* => api에서 받아오는 속도보다 읽히는게 빠르기때문에 오류가 생김
       => api에서 받아오는것이 먼저 읽히고 읽힐 수 있도록 해줘야함 */}
 
-      {nowPlaying ? <MainBanner data={nowPlaying[0]} /> : "Loading"}
+      {nowPlaying ? <MainBanner data={nowPlaying[0]} /> : <Loading />}
     </>
   );
 };
