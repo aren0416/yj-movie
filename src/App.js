@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Detail } from "./components/detaill/Detail";
+import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Home } from "./components/home/Home";
 import { PageNotFound } from "./components/PageNotFound";
@@ -18,6 +19,7 @@ function App() {
         <Route path={routes.search} element={<Search />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
+      <Footer />
     </Router>
   );
 }

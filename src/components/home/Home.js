@@ -3,13 +3,9 @@ import { movieApi } from "../../api";
 import { useEffect, useState } from "react";
 import { MainBanner } from "./MainBanner";
 import { Loading } from "../Loading";
-import styled from "styled-components";
 import "../styes/swiper.css";
 import { Movies } from "./Movies";
-
-const Container = styled.div`
-  padding: 0 80px;
-`;
+import { Container } from "../Container";
 
 //console.log(movieApi.nowPlaying());
 // => api에서 불러온 내용 확인
