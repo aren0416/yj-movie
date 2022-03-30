@@ -84,7 +84,9 @@ export const Home = () => {
             <MainBanner data={nowPlaying[0]} />
 
             <Container>
-              <Movies movieData={nowPlaying} />
+              <Movies movieData={nowPlaying} title={"현재 상영 영화"} />
+              <Movies movieData={popular} title={"인기 영화"} />
+              <Movies movieData={upComing} title={"개봉 예정 영화"} />
             </Container>
           </>
         )

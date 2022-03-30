@@ -32,11 +32,11 @@ const params = {
   slidesPerView: 5.5,
 };
 
-export const Movies = ({ movieData }) => {
+export const Movies = ({ movieData, title }) => {
   return (
     <MovieWrap>
-      <Title>현재 상영 영화</Title>
-      <Swiper modules={[Navigation]} {...params}>
+      <Title>{title}</Title>
+      <Swiper modules={[Navigation]} {...params} navigation>
         {movieData.map((now) => (
           <SwiperSlide key={now.id}>
             <Link to={`${routes.detail}/${now.id}`}>
