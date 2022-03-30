@@ -5,6 +5,7 @@ import { Home } from "./components/home/Home";
 import { PageNotFound } from "./components/PageNotFound";
 import { Search } from "./components/search/Search";
 import { GlobalStyled } from "./components/styes/GlobalStyled";
+import { routes } from "./routes";
 
 function App() {
   return (
@@ -12,9 +13,9 @@ function App() {
       <GlobalStyled />
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Detail" element={<Detail />} />
-        <Route path="/Search" element={<Search />} />
+        <Route path={routes.home} element={<Home />} />
+        <Route path={routes.detail} element={<Detail />} />
+        <Route path={routes.search} element={<Search />} />
         <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </Router>
