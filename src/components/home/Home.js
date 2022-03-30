@@ -3,13 +3,44 @@ import { movieApi } from "../../api";
 import { useEffect, useState } from "react";
 import { MainBanner } from "./MainBanner";
 import { Loading } from "../Loading";
+import styled from "styled-components";
+import { mainTitle } from "../styes/GlobalStyled";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Navigation } from "swiper";
+import "../styes/swiper.css";
+
+const Container = styled.div`
+  padding: 0 80px;
+`;
+
+const MovieWrap = styled.div`
+  margin-top: 100px;
+`;
+
+const Title = styled.h3`
+  font-size: ${mainTitle.fontSize};
+  font-weight: ${mainTitle.fontWeight};
+  margin-bottom: 30px;
+`;
+
+const Img = styled.div`
+  width: 100%;
+  height: 200px;
+`;
+
+const MovieTitle = styled.h4`
+  font-size: 18px;
+  margin-top: 15px;
+`;
+
+SwiperCore.use([Navigation]);
 
 //console.log(movieApi.nowPlaying());
 // => api에서 불러온 내용 확인
 
 //console.log(movieApi.popular());
 
-console.log(movieApi.upComing());
+// console.log(movieApi.upComing());
 
 export const Home = () => {
   const [nowPlaying, setNowPlaying] = useState();
@@ -52,6 +83,11 @@ export const Home = () => {
     movieData();
   }, []);
 
+  const params = {
+    spaceBetween: 5.2,
+    slidesPerView: 5.5,
+  };
+
   console.log("현재 상영 영화", nowPlaying);
   console.log("인기 영화", popular);
   console.log("개봉 예정 영화", upComing);
@@ -75,6 +111,24 @@ export const Home = () => {
         nowPlaying && (
           <>
             <MainBanner data={nowPlaying[0]} />
+
+            <Container>
+              <MovieWrap>
+                <Title>현재 상영 영화</Title>
+                <Swiper Navigation {...params}>
+                  {nowPlaying.map((now) => (
+                    <SwiperSlide>
+                      <Img
+                        style={{
+                          background: `url(https://image.tmdb.org/t/p/original${now.backdrop_path}) no-repeat center / cover`,
+                        }}
+                      />
+                      <MovieTitle>{now.title}</MovieTitle>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </MovieWrap>
+            </Container>
           </>
         )
       )}
