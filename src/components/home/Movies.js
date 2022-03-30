@@ -42,7 +42,7 @@ export const Movies = ({ movieData, title }) => {
             <Link to={`${routes.detail}/${now.id}`}>
               <Img
                 style={{
-                  background: `url(https://image.tmdb.org/t/p/original${now.backdrop_path}) no-repeat center / cover`,
+                  background: `url(https://image.tmdb.org/t/p/w500${now.backdrop_path}) no-repeat center / cover`,
                 }}
               />
               <MovieTitle>{now.title}</MovieTitle>
