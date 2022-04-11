@@ -39,7 +39,7 @@ export const Movies = ({ movieData, title }) => {
       <Swiper modules={[Navigation]} {...params} navigation>
         {movieData.map((now) => (
           <SwiperSlide key={now.id}>
-            <Link to={`${routes.detail}/${now.id}`}>
+            <Link to={`/detail/${now.id}`}>
               <Img
                 style={{
                   background: `url(https://image.tmdb.org/t/p/w500${now.backdrop_path}) no-repeat center / cover`,
