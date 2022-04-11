@@ -1,7 +1,36 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
+import styled from "styled-components";
 import { movieApi } from "../../api";
+import { IMG_URL } from "../../constents";
+import { Container } from "../Container";
+import { Loading } from "../Loading";
 import { PageTitle } from "../PageTitle";
+
+const Wrap = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 150px;
+`;
+
+const CoverImg = styled.div`
+  width: 50%;
+  height: 700px;
+`;
+
+const Content = styled.div``;
+
+const Title = styled.h3``;
+
+const ReleaseData = styled.div``;
+
+const Genres = styled.ul`
+  list-style: disc;
+`;
+
+const RunTime = styled.div``;
+
+const Overview = styled.div``;
 
 export const Detail = () => {
   // const params = useParams();
@@ -34,6 +63,8 @@ export const Detail = () => {
   const [detailData, setDetailData] = useState();
   // => movieApi의 data를 불러오기위해 사용
 
+  const [loading, setLoading] = useState(true);
+
   const movieData = async () => {
     // console.log(await movieApi.detail(id));
     // => 이대로 사용해도 되지만, 데이터를 불러오는 사이트가 오류가날때를 대비하여 try, catch 사용할것
@@ -43,6 +74,7 @@ export const Detail = () => {
       const { data: detailData } = await movieApi.detail(id);
       setDetailData(detailData);
       // console.log(data);
+      setLoading(false);
     } catch (error) {
       // console.log("에러: ", error);
       navigate("/*");
@@ -55,7 +87,32 @@ export const Detail = () => {
   return (
     <>
       <PageTitle title={"Detail"} />
-      <h1>Detail</h1>
+      {loading ? (
+        <Loading />
+      ) : (
+        <Container>
+          {detailData && (
+            <Wrap>
+              <CoverImg
+                style={{
+                  background: `url(${IMG_URL}${detailData.backdrop_path}) no-repeat center / cover`,
+                }}
+              />
+              <Content>
+                <Title>{detailData.title}</Title>
+                <ReleaseData>개봉일: {detailData.release_date}</ReleaseData>
+                <Genres>
+                  {detailData.genres.map((gen) => (
+                    <li>{gen.name}</li>
+                  ))}
+                </Genres>
+                <RunTime>런타임: {detailData.runtime} 분</RunTime>
+                <Overview>{detailData.overview}</Overview>
+              </Content>
+            </Wrap>
+          )}
+        </Container>
+      )}
     </>
   );
 };
