@@ -6,6 +6,7 @@ import { Loading } from "../Loading";
 import "../styes/swiper.css";
 import { Movies } from "./Movies";
 import { Container } from "../Container";
+import { useNavigate } from "react-router-dom";
 
 //console.log(movieApi.nowPlaying());
 // => api에서 불러온 내용 확인
@@ -26,8 +27,10 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
   // => 참이면 로딩페이지를 돌리고, 거짓이면 컨텐츠가 나오도록 작성할 것임
 
-  useEffect(() => {
-    const movieData = async () => {
+  const navigate = useNavigate();
+
+  const movieData = async () => {
+    try {
       //const nowPlayingData = await (await movieApi.nowPlaying()).data.results;
       const {
         data: { results: nowPlayingData },
@@ -51,9 +54,12 @@ export const Home = () => {
       setUpComing(upComingData);
 
       setLoading(false);
-    };
-    movieData();
-  }, []);
+    } catch (error) {
+      navigate("/*");
+    }
+  };
+
+  useEffect(movieData, []);
 
   // console.log("현재 상영 영화", nowPlaying);
   // console.log("인기 영화", popular);
