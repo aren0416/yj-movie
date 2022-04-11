@@ -18,19 +18,40 @@ const CoverImg = styled.div`
   height: 700px;
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  padding: 50px;
+  width: 50%;
+`;
 
-const Title = styled.h3``;
+const Title = styled.h3`
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  line-height: 5rem;
+`;
 
-const ReleaseData = styled.div``;
+const ReleaseData = styled.div`
+  opacity: 0.9;
+  font-size: 20px;
+`;
 
 const Genres = styled.ul`
   list-style: disc;
+  margin: 30px 0;
+  padding-left: 15px;
+  li {
+    line-height: 2rem;
+  }
 `;
 
-const RunTime = styled.div``;
+const RunTime = styled.div`
+  margin-bottom: 30px;
+  opacity: 0.7;
+`;
 
-const Overview = styled.div``;
+const Overview = styled.p`
+  line-height: 2rem;
+`;
 
 export const Detail = () => {
   // const params = useParams();
@@ -103,7 +124,7 @@ export const Detail = () => {
                 <ReleaseData>개봉일: {detailData.release_date}</ReleaseData>
                 <Genres>
                   {detailData.genres.map((gen) => (
-                    <li>{gen.name}</li>
+                    <li key={gen.id}>{gen.name}</li>
                   ))}
                 </Genres>
                 <RunTime>런타임: {detailData.runtime} 분</RunTime>
